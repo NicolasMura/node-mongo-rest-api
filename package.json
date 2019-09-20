@@ -1,0 +1,31 @@
+{
+  "name": "node-mongo-rest-api",
+  "version": "1.0.0",
+  "description": "An API built with NodeJS, Express, MongoDB and TypeScript",
+  "main": "dist/server.js",
+  "scripts": {
+    "test": "echo todo...",
+    "build": "tsc",
+    "dev": "ts-node ./src/server.ts",
+    "start": "nodemon ./dist/server.js",
+    "prod": "npm run build && npm run start"
+  },
+  "keywords": [
+    "Typescript",
+    "Node JS",
+    "Express",
+    "Mongo DB",
+    "REST API"
+  ],
+  "author": "Nicolas MURA <contact@nicolasmura.fr> (http://nicolasmura.fr)",
+  "license": "GNU",
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
