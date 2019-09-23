@@ -1,5 +1,6 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import { PlaylistSchema } from './playlistModel';
+
 const Schema = mongoose.Schema;
 
 export const OwnerSchema = new Schema({

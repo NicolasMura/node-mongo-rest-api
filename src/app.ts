@@ -1,10 +1,13 @@
-import * as express from "express";
-import * as bodyParser from "body-parser";
+import express from "express";
+import bodyParser from "body-parser";
 // import { Routes } from "./routes/playlistRoutes";
 import { PlaylistRoutes } from "./routes/playlistRoutes";
 import { OwnerRoutes } from "./routes/ownerRoutes";
 import { Request, Response } from "express";
-import * as mongoose from "mongoose";
+import mongoose from "mongoose";
+// import swaggerUiExpress = require("swagger-ui-express");
+import swaggerUiExpress from "swagger-ui-express";
+import swaggerDocument from "../swagger.json";
 
 class App {
 
@@ -36,11 +39,12 @@ class App {
     this.app.use(bodyParser.urlencoded({ extended: false }));
     // serving static files
     this.app.use(express.static('public'));
+    this.app.use('/swagger', swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerDocument));
   }
 
   private mongoSetup(): void {
     mongoose.Promise = global.Promise;
-    mongoose.connect(this.mongoUrl, { useNewUrlParser: true });
+    mongoose.connect(this.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
   }
 
 }

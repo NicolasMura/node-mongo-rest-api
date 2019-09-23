@@ -8,7 +8,7 @@ public ownerController: OwnerController = new OwnerController();
   public routes(app): void {
 
     // Owner
-    app.route('/owner')
+    app.route('/owners')
     .get((req: Request, res: Response, next: NextFunction) => {
         // middleware
         console.log(`Request from: ${req.originalUrl}`);
@@ -25,7 +25,7 @@ public ownerController: OwnerController = new OwnerController();
     .post(this.ownerController.addNewOwner);
 
     // Owner detail
-    app.route('/owner/:ownerId')
+    app.route('/owners/:ownerId')
     // get specific owner
     .get(this.ownerController.getOwnerWithID)
     .put(this.ownerController.updateOwner)

@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import { PlaylistSchema } from '../models/playlistModel';
 import { Request, Response } from 'express';
 
@@ -36,6 +36,9 @@ export class PlaylistController {
   }
 
   public updatePlaylist (req: Request, res: Response) {
+    // Make Mongoose use `findOneAndUpdate()`. Note that this option is `true`
+    // by default, you need to set it to false.
+    mongoose.set('useFindAndModify', false);
     Playlist.findOneAndUpdate({ _id: req.params.playlistId }, req.body, { new: true }, (err, playlist) => {
       if(err){
         res.send(err);
@@ -45,7 +48,7 @@ export class PlaylistController {
   }
 
   public deletePlaylist (req: Request, res: Response) {
-    Playlist.remove({ _id: req.params.playlistId }, (err, playlist) => {
+    Playlist.deleteOne({ _id: req.params.playlistId }, (err, playlist) => {
       if(err){
         res.send(err);
       }

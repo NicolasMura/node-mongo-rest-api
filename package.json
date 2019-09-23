@@ -4,6 +4,7 @@
   "description": "An API built with NodeJS, Express, MongoDB and TypeScript",
   "main": "dist/server.js",
   "scripts": {
+    "mock": "ts-node ./src/mocks/mock.ts",
     "test": "echo todo...",
     "build": "tsc",
     "dev": "ts-node ./src/server.ts",
@@ -23,9 +24,12 @@
     "@types/express": "^4.16.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "mongoose": "^5.4.7"
+    "mongoose": "^5.4.7",
+    "mongoose-dummy": "^1.0.8",
+    "swagger-ui-express": "^4.1.1"
   },
   "devDependencies": {
+    "@types/swagger-ui-express": "^3.0.1",
     "nodemon": "^1.18.9"
   }
 }

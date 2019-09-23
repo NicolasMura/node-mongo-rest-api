@@ -6,7 +6,10 @@
     "sourceMap": false,
     "target": "es6",
     "outDir": "./dist",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    // "allowSyntheticDefaultImports": true
   },
   "include": [
     "src/**/*.ts"

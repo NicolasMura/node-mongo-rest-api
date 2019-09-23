@@ -8,7 +8,7 @@ public playlistController: PlaylistController = new PlaylistController();
   public routes(app): void {
 
     // Playlist
-    app.route('/playlist')
+    app.route('/playlists')
     .get((req: Request, res: Response, next: NextFunction) => {
         // middleware
         console.log(`Request from: ${req.originalUrl}`);
@@ -25,7 +25,7 @@ public playlistController: PlaylistController = new PlaylistController();
     .post(this.playlistController.addNewPlaylist);
 
     // Playlist detail
-    app.route('/playlist/:playlistId')
+    app.route('/playlists/:playlistId')
     // get specific playlist
     .get(this.playlistController.getPlaylistWithID)
     .put(this.playlistController.updatePlaylist)

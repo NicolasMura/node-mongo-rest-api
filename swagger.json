@@ -1,0 +1,231 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "The Title of your project",
+    "description": "A description of your project",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Local Dev, or from Heroku"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Spotify",
+      "description": "API for Spotify in the system"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/owners": {
+      "get": {
+        "tags": [
+          "Owners"
+        ],
+        "summary": "Get all owners in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Owners"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Owners"
+        ],
+        "summary": "Create a new owner in system",
+        "requestBody": {
+          "description": "Owner Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Owner"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    },
+    "/owners/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of the owner that we want to match",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Owners"
+        ],
+        "summary": "Get owner with given ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Owner with id",
+            "schema": {
+                "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Owner"
+            }
+          },
+          "404": {
+            "description": "Failed. Owner not found."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update owner with given ID",
+        "tags": [
+          "Owners"
+        ],
+        "requestBody": {
+          "description": "Owner Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Owner"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Owner with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Owner"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          },
+          "404": {
+            "description": "Failed. Cat not found."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete owner with given ID",
+        "tags": [
+          "Owners"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Delete Owner with id",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "404": {
+            "description": "Failed. Owner not found."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "id": {
+      "properties": {
+        "uuid": {
+          "type": "string"
+        }
+      }
+    },
+    "Owner": {
+      "type": "object",
+      "properties": {
+        "sp_id": {
+          "type": "string"
+        },
+        "sp_display_name": {
+          "type": "string"
+        },
+        "sp_owner_uri": {
+          "type": "boolean"
+        },
+        "sp_owner_href": {
+          "type": "string"
+        },
+        "created_date": {
+          "type": "date"
+        },
+        "sp_playlists": {
+          "type": "date"
+        }
+      }
+    },
+    "Owners": {
+      "type": "object",
+      "properties": {
+        "owners": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Owner"
+          }
+        }
+      }
+    }
+  }
+}

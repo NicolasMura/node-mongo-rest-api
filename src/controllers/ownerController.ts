@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import { OwnerSchema } from '../models/ownerModel';
 import { Request, Response } from 'express';
 
@@ -36,6 +36,9 @@ export class OwnerController {
   }
 
   public updateOwner (req: Request, res: Response) {
+    // Make Mongoose use `findOneAndUpdate()`. Note that this option is `true`
+    // by default, you need to set it to false.
+    mongoose.set('useFindAndModify', false);
     Owner.findOneAndUpdate({ _id: req.params.ownerId }, req.body, { new: true }, (err, owner) => {
       if(err){
         res.send(err);
@@ -45,7 +48,7 @@ export class OwnerController {
   }
 
   public deleteOwner (req: Request, res: Response) {
-    Owner.remove({ _id: req.params.ownerId }, (err, owner) => {
+    Owner.deleteOne({ _id: req.params.ownerId }, (err, owner) => {
       if(err){
         res.send(err);
       }
