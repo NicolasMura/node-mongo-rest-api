@@ -1,0 +1,14 @@
+{
+  "playlists": [
+    {
+      "sp_id": "37i9dQZF1DX5Lf3LZ6Czqu",
+      "sp_name": "nikouz",
+      "sp_images_urls": ["https://i.scdn.co/image/ab67706f0000000220464966be86b008bd9dfc58"],
+      "sp_tracks_count": 2,
+      "sp_tracks_uri": "spotify:playlist:37i9dQZF1DX5Lf3LZ6Czqu",
+      "sp_tracks_href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX5Lf3LZ6Czqu",
+      "description": "This is a awesome description !"
+      // "created_date": "2019-09-19T07:51:38.066+00:00"
+    }
+  ]
+}

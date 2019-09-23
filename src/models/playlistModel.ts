@@ -28,8 +28,7 @@ export const PlaylistSchema = new Schema({
     required: 'Spotify data - Tracks HREF'
   },
   description: {
-    type: [String],
-    required: 'App User data - Enter an additional description'
+    type: String
   },
   created_date: {
     type: Date,

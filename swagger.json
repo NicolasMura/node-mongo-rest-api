@@ -17,8 +17,12 @@
   ],
   "tags": [
     {
-      "name": "Spotify",
-      "description": "API for Spotify in the system"
+      "name": "Owners",
+      "description": "API for Owners in the system"
+    },
+    {
+      "name": "Playlists",
+      "description": "API for Playlists in the system"
     }
   ],
   "consumes": [
@@ -183,6 +187,162 @@
           }
         }
       }
+    },
+    "/playlists": {
+      "get": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Get all playlists in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Playlists"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Create a new playlist in system",
+        "requestBody": {
+          "description": "Playlist Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Playlist"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    },
+    "/playlists/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of the playlist that we want to match",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Playlists"
+        ],
+        "summary": "Get playlist with given ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Playlist with id",
+            "schema": {
+                "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Playlist"
+            }
+          },
+          "404": {
+            "description": "Failed. Playlist not found."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update playlist with given ID",
+        "tags": [
+          "Playlists"
+        ],
+        "requestBody": {
+          "description": "Playlist Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Playlist"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Playlist with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Playlist"
+            }
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          },
+          "404": {
+            "description": "Failed. Cat not found."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete playlist with given ID",
+        "tags": [
+          "Playlists"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Delete Playlist with id",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "404": {
+            "description": "Failed. Playlist not found."
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -223,6 +383,49 @@
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/Owner"
+          }
+        }
+      }
+    },
+    "Playlist": {
+      "type": "object",
+      "properties": {
+        "sp_id": {
+          "type": "string"
+        },
+        "sp_name": {
+          "type": "string"
+        },
+        "sp_images_urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sp_tracks_count": {
+          "type": "number"
+        },
+        "sp_tracks_uri": {
+          "type": "string"
+        },
+        "sp_tracks_href": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "created_date": {
+          "type": "date"
+        }
+      }
+    },
+    "Playlists": {
+      "type": "object",
+      "properties": {
+        "platlists": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Playlist"
           }
         }
       }
